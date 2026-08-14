@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centro de Recursos - Kit Robótico</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #f4f6f9;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            background: #ffffff;
+            max-width: 450px;
+            width: 100%;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            padding: 30px 20px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 1.5rem;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+        }
+        p.subtitle {
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 25px;
+        }
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            background: #0d6efd;
+            color: white;
+            text-decoration: none;
+            padding: 14px 20px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            background: #0b5ed7;
+        }
+        .btn span {
+            font-size: 1.3rem;
+            margin-right: 12px;
+        }
+        .btn-secondary {
+            background: #212529;
+        }
+        .btn-secondary:hover {
+            background: #000;
+        }
+        .info-box {
+            background: #e7f1ff;
+            border-left: 4px solid #0d6efd;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            color: #084298;
+            margin-top: 20px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>¡Bienvenido a tu Kit! 🤖</h1>
+    <p class="subtitle">Sigue los pasos a continuación para ensamblar y configurar tu robot.</p>
+
+    <!-- Botón 1: YouTube -->
+    <a href="TU_LINK_DE_YOUTUBE_AQUI" target="_blank" class="btn">
+        <span>🎬</span> Paso 1: Ver Videos de Ensamblaje
+    </a>
+
+    <!-- Botón 2: PDF -->
+    <a href="TU_LINK_DEL_PDF_AQUI" target="_blank" class="btn">
+        <span>📄</span> Paso 2: Manual y Diagramas (PDF)
+    </a>
+
+    <!-- Botón 3: App (APK) -->
+    <a href="TU_LINK_DEL_APK_AQUI" target="_blank" class="btn">
+        <span>📱</span> Paso 3: Descargar App Android
+    </a>
+
+    <!-- Botón 4: Código GitHub -->
+    <a href="TU_LINK_DEL_REPOSITORIO_AQUI" target="_blank" class="btn btn-secondary">
+        <span>💻</span> Paso 4: Ver Código Fuente en GitHub
+    </a>
+
+    <div class="info-box">
+        💡 <strong>Nota:</strong> Tu placa ESP32 ya viene preprogramada de fábrica. ¡Solo ensambla, conecta y controla!
+    </div>
+</div>
+
+</body>
+</html>
