@@ -154,12 +154,26 @@
         .close-btn:hover {
             color: #333;
         }
+        .logo-title {
+          display: flex;
+          flex-direction: column; /* Alinea los elementos uno encima del otro */
+          align-items: center;    /* Centra la imagen y el texto horizontalmente */
+          gap: 8px;               /* Espacio de separación entre el logo y el texto */
+        }
+        
+        .logo-img {
+          width: 80px;            /* Ajusta el ancho de tu logo según necesites */
+          height: auto;           /* Mantiene la proporción de la imagen */
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <div class="logo-title">RS Tech</div>
+    <div class="logo-title">
+      <img src="img/app_icon_RS2.png" alt="Logo RS Tech" class="logo-img">>
+      <span>RS Tech</span>
+    </div>
     <h1>¡Bienvenido a tu Kit! 🤖</h1>
     <p class="subtitle">Sigue los pasos a continuación para ensamblar y configurar tu robot.</p>
 
