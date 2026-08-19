@@ -348,7 +348,7 @@ void controladorLucesTraseras(bool encendido)
 
 void iniciarBluetooth() 
 { 
-    if (!SerialBT.begin("RS Tech - CarBot v1.0.0")) 
+    if (!SerialBT.begin("RS Tech - CarBot v1.0")) 
     {
         Serial.println("Error al iniciar Bluetooth");
     } 
