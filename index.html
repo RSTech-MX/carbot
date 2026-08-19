@@ -29,6 +29,12 @@
             padding: 30px 20px;
             text-align: center;
         }
+        .logo-title {
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: #0d6efd;
+            margin-bottom: 4px;
+        }
         h1 {
             font-size: 1.5rem;
             color: #1a1a1a;
@@ -52,6 +58,9 @@
             font-weight: 600;
             font-size: 0.95rem;
             transition: transform 0.2s, background-color 0.2s;
+            border: none;
+            cursor: pointer;
+            width: 100%;
         }
         .btn:hover {
             transform: translateY(-2px);
@@ -61,11 +70,23 @@
             font-size: 1.3rem;
             margin-right: 12px;
         }
+        .btn-sub {
+            background: #0088cc;
+        }
+        .btn-sub:hover {
+            background: #0077b5;
+        }
         .btn-secondary {
             background: #212529;
         }
         .btn-secondary:hover {
             background: #000;
+        }
+        .btn-optional {
+            background: #198754;
+        }
+        .btn-optional:hover {
+            background: #157347;
         }
         .info-box {
             background: #e7f1ff;
@@ -76,6 +97,62 @@
             color: #084298;
             margin-top: 20px;
             text-align: left;
+        }
+
+        /* --- ESTILOS DE LAS VENTANAS FLOTANTES (MODALES) --- */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+        .modal-content {
+            background: #ffffff;
+            padding: 25px 20px;
+            border-radius: 16px;
+            max-width: 380px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            position: relative;
+            animation: popIn 0.25s ease-out;
+        }
+        @keyframes popIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        .modal-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+        }
+        .modal-subtitle {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        .close-btn {
+            position: absolute;
+            top: 12px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 1.4rem;
+            color: #999;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .close-btn:hover {
+            color: #333;
         }
     </style>
 </head>
@@ -92,32 +169,82 @@
     </a>
 
     <!-- Botón 2: PDF -->
-    <a href="https://github.com/RSTech-MX/carbot/raw/main/Guia_Tecnica_Kit_RS_Tech_CarBot.pdf" target="_blank" class="btn">        <span>📄</span> Paso 2: Manual y Diagramas (PDF)
+    <a href="https://github.com/RSTech-MX/carbot/raw/main/Guia_Tecnica_Kit_RS_Tech_CarBot.pdf" target="_blank" class="btn">
+        <span>📄</span> Paso 2: Manual y Diagramas (PDF)
     </a>
 
-    <!-- Botón 3: App (APK) -->
-    <a href="https://github.com/RSTech-MX/carbot/releases/download/v1.0.0/RS_Tech_CarBot.apk" target="_blank" class="btn">        <span>📱</span> Paso 3: Descargar App Android
-    </a>
+    <!-- Botón 3: App Android (Abre Modal 1) -->
+    <button type="button" class="btn" onclick="openModal('appModal')">
+        <span>📱</span> Paso 3: Aplicación Android
+    </button>
 
     <!-- Botón 4: Código GitHub -->
     <a href="https://github.com/RSTech-MX/carbot/blob/main/CarritoRC.ino" target="_blank" class="btn btn-secondary">
         <span>💻</span> Paso 4: Ver Código Fuente en GitHub
     </a>
 
-    <!-- Paso Opcional: Descargar BIN -->
-    <a href="https://github.com/RSTech-MX/carbot/raw/main/firmware_completo.bin" target="_blank" class="btn btn-optional">
-        <span>⚡</span> Paso Opcional: Descargar Firmware listo (.bin)
-    </a>
-    
-    <!-- Guía del Paso Opcional -->
-    <a href="https://github.com/RSTech-MX/carbot/raw/main/Guia_Restauracion_Firmware_CarBot.pdf" target="_blank" class="btn btn-sub">
-        <span>📖</span> Ver Guía en PDF: Cómo cargar el Firmware (.bin)
-    </a>
+    <!-- Botón Opcional: Carga de Firmware (Abre Modal 2) -->
+    <button type="button" class="btn btn-optional" onclick="openModal('firmwareModal')">
+        <span>⚡</span> Paso Opcional: Software y Flasheo (.bin)
+    </button>
 
     <div class="info-box">
         💡 <strong>Nota:</strong> Tu placa ESP32 ya viene preprogramada de fábrica. ¡Solo ensambla, conecta y controla!
     </div>
 </div>
+
+<!-- ================= VENTANAS FLOTANTES ================= -->
+
+<!-- 1. Modal para Paso 3: App Android -->
+<div class="modal-overlay" id="appModal" onclick="closeModalOnLayout(event, 'appModal')">
+    <div class="modal-content">
+        <button class="close-btn" onclick="closeModal('appModal')">&times;</button>
+        <div class="modal-title">RS Tech - CarBot App</div>
+        <div class="modal-subtitle">Selecciona la opción que requieras:</div>
+
+        <a href="https://github.com/RSTech-MX/carbot/releases/download/v1.0.0/RS_Tech_CarBot.apk" target="_blank" class="btn">
+            <span>⬇️</span> Descargar Aplicación (APK)
+        </a>
+
+        <a href="https://github.com/RSTech-MX/carbot/raw/main/Guia_Uso_App_CarBot.pdf" target="_blank" class="btn btn-sub" style="margin-bottom: 0;">
+            <span>📖</span> Guía de Uso e Instalación (PDF)
+        </a>
+    </div>
+</div>
+
+<!-- 2. Modal para Paso Opcional: Firmware -->
+<div class="modal-overlay" id="firmwareModal" onclick="closeModalOnLayout(event, 'firmwareModal')">
+    <div class="modal-content">
+        <button class="close-btn" onclick="closeModal('firmwareModal')">&times;</button>
+        <div class="modal-title">Restauración de Firmware</div>
+        <div class="modal-subtitle">Opciones para reinstalar el software original:</div>
+
+        <a href="https://github.com/RSTech-MX/carbot/raw/main/firmware_completo.bin" target="_blank" class="btn btn-optional">
+            <span>⚡</span> Descargar Firmware (.bin)
+        </a>
+
+        <a href="https://github.com/RSTech-MX/carbot/raw/main/Guia_Restauracion_Firmware_CarBot.pdf" target="_blank" class="btn btn-sub" style="margin-bottom: 0;">
+            <span>📖</span> Guía de Instalación del Firmware (PDF)
+        </a>
+    </div>
+</div>
+
+<!-- ================= JAVASCRIPT ================= -->
+<script>
+    function openModal(id) {
+        document.getElementById(id).style.display = 'flex';
+    }
+
+    function closeModal(id) {
+        document.getElementById(id).style.display = 'none';
+    }
+
+    function closeModalOnLayout(event, id) {
+        if (event.target.classList.contains('modal-overlay')) {
+            closeModal(id);
+        }
+    }
+</script>
 
 </body>
 </html>
